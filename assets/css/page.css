@@ -1,0 +1,142 @@
+.page-title {
+    font-size: 1.5em;
+    margin: 0 0 .5em 0;
+}
+
+.page-title:after {
+    content : "";
+    display: block;
+    height  : 1px;
+    margin: auto;
+    width   : 70%;
+    border-bottom: 1px solid var(--pink);
+    padding-bottom: .5em;
+}
+
+/* Submit */
+
+.submit-form {
+    width: fit-content;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.submit-label {
+    text-align: left;
+    font-size: 1.2em;
+    color: var(--white);
+}
+
+.submit-input {
+    font-size: 1.2em;
+    outline: none;
+    border: none;
+    color: var(--pink);
+    background-color: #AB3013;
+    margin-bottom: .3em;
+}
+
+.button-flex {
+    padding: .5em 0;
+    display: flex;
+    justify-content: space-around;
+}
+
+.preview-images {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.preview-image {
+    max-width: 400px;
+    border-radius: 15px;
+    padding: .3em;
+}
+
+/* Winners */
+
+.winner-list {
+    margin: auto;
+    width: fit-content;
+    list-style: none;
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+}
+
+.winner {
+    font-size: 2em;
+}
+
+/* Winner */
+.winner-stats {
+    margin: auto;
+    font-size: 1.3em;
+    max-width: 50%;
+    text-align: left;
+}
+
+.winner-item-label {
+    font-weight: 700;
+    display: flex;
+}
+
+.winner-item-label, .winner-item-value {
+    padding: 0 .5em;
+}
+
+.winner-image {
+    width: 50%;
+}
+
+/* Rules */
+.rules-list {
+    margin: auto;
+    width: fit-content;
+}
+
+.rule {
+    width: fit-content;
+    font-size: 1.3em;
+    padding: .3em;
+    text-align: left;
+}
+
+/* Submit ok */
+.submit-ok-image {
+    max-width: 30%;
+}
+
+
+
+/* Resize */
+@media screen and (max-width: 700px) {
+    .page-title {
+        margin-top: .5em;
+    }
+    .winner-stats {
+        max-width: 100%;
+        font-size: .9em;
+    }
+    .rule {
+        font-size: .9em;
+    }
+    .submit-form {
+        padding: .3em;
+    }
+    .submit-input {
+        font-size: .6em;
+    }
+    .submit-form .button-container {
+        margin-top: 0;
+    }
+    .submit-ok-image {
+        max-width: 90%;
+    }
+    .popup {
+        padding: 1em;
+        width: 70%;
+    }
+}

@@ -1,0 +1,103 @@
+---
+permalink: /submit
+layout: page
+title: Ansök
+---
+
+<div class="popup" id="submit-popup">
+    <p class="bold">Är du säker att du vill skicka ansökan?</p>
+    <p class="bold">Du kan inte ändra den efter!</p>
+
+    <div class="button-flex">
+        <button class="button">Ja</button>
+        <button class="button popup-close">Nej</button>
+    </div>
+</div>
+
+<div class="popup" id="message-popup">
+    <p class="bold" id="message"></p>
+
+    <div class="button-flex">
+        <button class="button popup-close">Stäng</button>
+    </div>
+</div>
+
+<div class="submit-form">
+    <label class="submit-label">Titel</label>
+    <input class="submit-input" size="33" id='submit-title' type="text">
+
+    <label class="submit-label">Lagnamn</label>
+    <input class="submit-input" size="33" id='submit-name' type="text">
+
+    <label class="submit-label">
+        Kod
+        <span title="Denna kod får du av Victor :)">?</span>
+    </label>
+    <input class="submit-input" size="33" id='submit-code' type="text">
+
+    <label class="submit-label">Julrim (valfritt, potentiella bonuspoäng)</label>
+    <textarea class="submit-input" id='submit-rhyme'></textarea>
+
+    <label class="submit-label">Bilder (max 5)</label>
+    <input type="file" accept="image/png, image/gif, image/jpeg" id="submit-images" multiple onchange="loadFile(event)">
+    <div class="preview-images">
+        <img class="preview-image"/>
+        <img class="preview-image"/>
+        <img class="preview-image"/>
+        <img class="preview-image"/>
+        <img class="preview-image"/>
+    </div>
+
+    <div class="button-container">
+        <!--<button class="button" onclick="showPopup('submit-popup')">Skicka ansökan</button>-->
+        <button class="button" onclick="sendSubmission()">Skicka ansökan</button>
+    </div>
+
+</div>
+
+<script>
+    const images = $('.preview-image');
+    // Temporary domain name...
+    const backend = 'https://www.timemate.cloud/submit/';
+
+    function sendSubmission() {
+        let data = new FormData();
+        data.append('title', $('#submit-title')[0].value);
+        data.append('name', $('#submit-name')[0].value);
+        data.append('code', $('#submit-code')[0].value);
+        data.append('rhyme', $('#submit-rhyme')[0].value);
+        for (let file of $('#submit-images')[0].files) {
+            data.append(file.name, file);
+        }
+        $.ajax({
+            url: backend,
+            data: data,
+            processData: false,
+            contentType: false,
+            type: 'POST',
+            success: function(data){
+                if (data.success) {
+                    window.location.href = "{{ site.baseurl }}submit_ok";
+                } else {
+                    $('#message').html(data.message)
+                    showPopup('message-popup')
+                }
+            },
+            error: () => {
+                $('#message').html('Ojdå, något gick snett, kunde inte få tag på tomten! Fråga Victor om allt är som det ska.');
+                showPopup('message-popup');
+            }
+        });
+    }
+
+    function loadFile(event) {
+        for (let file = 0; file < event.target.files.length; file++) {
+            let output = images[file];
+            output.src = URL.createObjectURL(event.target.files[file]);
+            output.onload = function() {
+               URL.revokeObjectURL(output.src);
+            }
+        }
+    }
+
+</script>

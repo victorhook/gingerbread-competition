@@ -1,8 +1,11 @@
 dev:
-	xdg-open http://127.0.0.1:4000/snake/
+	xdg-open http://127.0.0.1:4000/gingerbread-competition/
 	bundle exec jekyll serve
 
 run: dev
+
+sync:
+	rsync -a backend/* --exclude backend/env/* git@142.93.164.184:/home/git/web/gingerbread/
 
 push:
 	git add _posts/

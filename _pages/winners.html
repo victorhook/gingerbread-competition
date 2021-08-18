@@ -1,0 +1,11 @@
+---
+permalink: /winners
+layout: page
+title: Tidigare vinnare
+---
+
+<div class="winner-list">
+    {% for winner in site.winners %}
+        <a class="winner nav-link" href="{{ site.baseurl }}{{ winner.url }}">{{ winner.year }} - {{ winner.title }}</a>
+    {% endfor %}
+</div>

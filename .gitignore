@@ -1,1 +1,5 @@
 _site/
+Gemfile
+backend/
+.jekyll-cache/
+.vscode/

@@ -1,0 +1,38 @@
+---
+layout: base
+---
+<link rel="stylesheet" href="{{ site.asseturl }}css/page.css">
+
+<h2 class="page-title">{{ page.year }} - {{ page.title }}</h2>
+
+<table class="winner-stats">
+
+    <tr class="winner-item">
+        <td class="winner-item-label">Lag:</td>
+        <td class="winner-item-value">{{ page.team-name }}</td>
+    </tr>
+
+    <tr class="winner-item">
+        <td class="winner-item-label">År:</td>
+        <td class="winner-item-value">{{ page.year }}</td>
+    </tr>
+
+    <tr class="winner-item">
+        <td class="winner-item-label">Poäng:</td>
+        <td class="winner-item-value">{{ page.points }}</td>
+    </tr>
+
+    <tr class="winner-item">
+        <td class="winner-item-label">Rim:</td>
+        <td class="winner-item-value">{{ page.rhyme }}Magna reprehenderit velit ipsum occaecat. Labore Lorem minim reprehenderit et. Pariatur aliqua mollit pariatur mollit. Magna sint ea eiusmod fugiat adipisicing laboris pariatur id nostrud elit aliquip est. Duis culpa culpa consequat dolore dolore anim ullamco laboris ea velit in. Ex nostrud eu consequat voluptate. Commodo reprehenderit duis esse quis labore ea consectetur qui aliquip consequat enim.
+
+    </tr>
+
+</table>
+
+
+{% for image in page.images %}
+<img class="winner-image" src="{{ site.asseturl }}images/{{ image }}" alt="Winners {{ page.year }}">
+{% endfor %}
+
+{{ content }}

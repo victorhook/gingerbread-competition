@@ -1,11 +1,49 @@
 ---
 layout: base
+end: 2021-12-20
 ---
 
-<div class="front-screen">
-    <h1 id="title">Welcome to Snake!</h1>
+<h1 id="title">Välkommen till årets pepparkakshustävling!</h1>
+<h4>Ansökan stänger den {{ page.end }}</h4>
 
-    <a class="button" href="{{ site.baseurl }}game">Play</a>
-    <a class="button" href="{{ site.baseurl }}rules">Rules</a>
+<div class="countdown">
+    <span>Tid kvar tills ansökan stänger:</span>
+    <span><span id="days"></span>d</span>
+    <span><span id="hours"></span>h</span>
+    <span><span id="minutes"></span>m</span>
+    <span><span id="seconds"></span>s</span>
 </div>
 
+<div class="button-container">
+<a class="button" href="{{ site.baseurl }}submit">Skicka ansökan</a>
+</div>
+
+<script>
+
+    window.onload = () => {
+        setInterval(() => updateLabels(), 1000);
+        let tmp = "{{ page.end }}".split('-');
+        let targetDate = new Date(tmp[0], tmp[1], tmp[2]);
+        updateLabels();
+
+        function updateLabels() {
+            let diff = targetDate - new Date();
+            let seconds = Math.round(diff / 1000);
+            let minutes = Math.round(diff / (1000 * 60));
+            let hours = Math.round(diff / (1000 * 60 * 60));
+            let days = Math.round(diff / (1000 * 60 * 60 * 24));
+
+            seconds %= 60;
+            minutes %= 60;
+            hours %= 24;
+
+            $('#days').html(days.toString().padStart(3, '0'));
+            $('#hours').html(hours.toString().padStart(2, '0'));
+            $('#minutes').html(minutes.toString().padStart(2, '0'));
+            $('#seconds').html(seconds.toString().padStart(2, '0'));
+        }
+    }
+
+
+
+</script>
